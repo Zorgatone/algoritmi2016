@@ -8,7 +8,7 @@ INPUT= input.txt
 #CC=gcc
 
 OBJS:= $(BIN)/$(NAME).o $(BIN)/student.o
-FLAGS= -std=c11 -Wall -Wextra -pedantic
+FLAGS= -std=c11 -Wall -Wextra -pedantic -g3
 
 all: $(EXE)
 $(EXE): $(OBJS)

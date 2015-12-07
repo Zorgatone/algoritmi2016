@@ -12,33 +12,37 @@ void die(const char * format, ...);
 
 int main(int argc, char **argv) {
 	if (argc < 2)
-        die("Usage: %s inputfile.txt\n", argv[0]);
+		die("Usage: %s inputfile.txt\n", argv[0]);
 
-    puts("Ok");
+	puts("Ok");
 
-    student_t student = {
-        .id = "s184728",
-        .firstname = "Tommaso",
-        .lastname = "Ricci",
-        .birthdate = {
-            .day = 10,
-            .month = 7,
-            .year = 1992
-        },
-        .gender = MALE
-    };
+	studs_t students = newStuds();
+	student_t tmp = {
+		.id = "s184728",
+		.firstname = "Tommaso",
+		.lastname = "Ricci",
+		.birthdate = {
+			.day = 10,
+			.month = 7,
+			.year = 1992
+		},
+		.gender = MALE
+	};
 
-    printStudent(student);
+	addStud(&students, tmp);
+	printStudent(*students.links[0]);
 
-    return EXIT_SUCCESS;
+	freeStuds(&students);
+
+	return EXIT_SUCCESS;
 }
 
 void die(const char *format, ...) {
 	va_list args;
-	va_start (args, format);
+	va_start(args, format);
 
 	vfprintf(stderr, format, args);
 
-	va_end (args);
+	va_end(args);
 	exit(EXIT_FAILURE);
 }
